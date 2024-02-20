@@ -1,0 +1,31 @@
+# Couldn't automatically generate a config from your source code.
+# This is a generic template to serve as a base for your custom config
+# See: https://circleci.com/docs/configuration-reference
+# Stacks detected: deps:node:.
+version: 2.1
+jobs:
+  build_and_run:
+    machine:
+      image: ubuntu-2004:current
+    steps:
+      - checkout
+      - run:
+          name: Build image
+          command: docker build .
+      
+      - run:
+          name: Run the app with docker compose
+          command: docker compose up --build
+
+      - run:
+          name: Install curl to test the app
+          command: apt install curl
+
+      - run:
+          name: Test if the app is running
+          command: curl http://localhost:8080/
+
+workflows:
+  example:
+    jobs:
+      - build_and_run
