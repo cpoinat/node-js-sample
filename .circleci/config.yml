@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run:
           name: Build image
-          command: docker build .
+          command: docker build -t $DOCKERHUB_USERNAME/sample-node-js:0.1.$CIRCLE_BUILD_NUM .
       
       - run:
           name: Run the app with docker compose
