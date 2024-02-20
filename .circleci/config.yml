@@ -19,7 +19,7 @@ jobs:
 
       - run:
           name: Install curl to test the app
-          command: apt install curl
+          command: sudo apt install curl
 
       - run:
           name: Test if the app is running
